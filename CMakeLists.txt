@@ -5,7 +5,9 @@ project(SonicMania)
 set(GAME_NAME SonicMania CACHE STRING "The game directory to look into")
 
 set(OUTPUT_NAME "Game" CACHE STRING "The name of the built library")
-
+if(EMSCRIPTEN)
+    include(RSDK-Library-GameAPI.cmake)
+else()
 add_library(SonicMania SHARED
     ${GAME_NAME}/Game.c
     ${GAME_NAME}/Objects/All.c
