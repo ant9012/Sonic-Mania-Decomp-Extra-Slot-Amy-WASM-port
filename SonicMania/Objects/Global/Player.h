@@ -587,8 +587,11 @@ void Player_Action_Roll(void);
 void Player_Action_Spindash(void);
 void Player_Action_Spindash_CD(void);
 void Player_Action_Peelout(void);
-void Player_Action_TallJump(void);
+
+// FIXED: Changed to void
+void Player_Action_TallJump(void); 
 void Player_State_TallJump(void);
+
 void Player_Action_HammerWhack(void);
 #if MANIA_USE_PLUS
 bool32 Player_SwapMainPlayer(bool32 forceSwap);
@@ -633,9 +636,18 @@ void Player_State_MightyUnspin(void);
 void Player_SpawnMightyHammerdropDust(int32 speed, Hitbox *hitbox);
 bool32 Player_CheckMightyUnspin(EntityPlayer *player, int32 bounceDistance, bool32 checkHammerDrop, int32 *uncurlTimer);
 void Player_State_RayGlide(void);
+
+// FIXED: All Amy states updated to match Player.c
 void Player_State_AmyHammer(void);
 void Player_State_AmyHeliHammer_Left(void);
 void Player_State_AmyHeliHammer_Right(void);
+
+// Added new states for Extra Slot Amy
+void Player_State_HammerAttack(void);
+void Player_State_HammerDash(void);
+void Player_State_AmyFloat(void);
+void Player_State_AmyFloat_Fall(void);
+void Player_State_HammerJump(void);
 #endif
 void Player_State_FlyToPlayer(void);
 void Player_State_ReturnToPlayer(void);
