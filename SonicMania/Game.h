@@ -71,8 +71,9 @@
 #define GAME_VERSION VER_106
 #endif
 #endif
-
-#define MANIA_USE_PLUS (GAME_VERSION >= VER_105)
+#ifndef MANIA_USE_PLUS
+    #define MANIA_USE_PLUS (GAME_VERSION >= VER_105)
+#endif
 #define MANIA_USE_EGS  (GAME_VERSION == VER_107)
 
 #ifndef ESA_ENABLE_HAMMERWHACK
