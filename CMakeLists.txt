@@ -28,6 +28,7 @@ target_include_directories(${GAME_NAME} PRIVATE
 # 4. Add Definitions (From vcxproj)
 add_definitions(
     -DRETRO_REVISION=3
+    -DMANIA_USE_PLUS=1    # <--- CRITICAL FIX FOR AMY/PLUS MODS
     -DRETRO_STANDALONE=1
     -DSONICMANIA_EXPORTS
     -DNDEBUG
