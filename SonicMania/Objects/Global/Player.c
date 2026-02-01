@@ -3712,12 +3712,12 @@ void Player_Action_TallJump(void)
             self->nextAirState     = Player_State_TallJump;
             self->state            = Player_State_TallJump;
             Player_State_Air();
-            Player_State_TallJump(self);
+            Player_State_TallJump();
         }
     }
 }
 
-void Player_State_TallJump(EntityPlayer *player)
+void Player_State_TallJump(void)
 {
     RSDK_THIS(Player);
     Player_State_Air();
