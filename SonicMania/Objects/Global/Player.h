@@ -588,7 +588,7 @@ void Player_Action_Spindash(void);
 void Player_Action_Spindash_CD(void);
 void Player_Action_Peelout(void);
 void Player_Action_TallJump(void);
-void Player_State_TallJump(EntityPlayer *player);
+void Player_State_TallJump(void);
 void Player_Action_HammerWhack(void);
 #if MANIA_USE_PLUS
 bool32 Player_SwapMainPlayer(bool32 forceSwap);
