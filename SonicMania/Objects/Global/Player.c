@@ -700,6 +700,21 @@ void Player_Create(void *data)
     }
 }
 
+void Player_Action_HammerWhack(void)
+{
+#if ESA_ENABLE_HAMMERWHACK
+    RSDK_THIS(Player);
+
+    self->state          = Player_State_AmyHammer;
+    self->timer          = 0;
+    self->abilityTimer   = 0;
+    self->spindashCharge = 0;
+
+    RSDK.SetSpriteAnimation(self->aniFrames, 49, &self->animator, false, 0);
+    self->animator.speed = 10;
+#endif
+}
+
 void Player_Action_TallJump(void)
 {
     RSDK_THIS(Player);
