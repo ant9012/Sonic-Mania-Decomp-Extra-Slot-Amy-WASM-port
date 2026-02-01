@@ -4,21 +4,28 @@ project(SonicMania)
 set(GAME_NAME SonicMania CACHE STRING "The game directory to look into")
 set(OUTPUT_NAME "Game" CACHE STRING "The name of the built library")
 
-# 1. Source Files
+# 1. Define Sources
 set(GAME_SOURCES
     ${GAME_NAME}/Game.c
     ${GAME_NAME}/Objects/All.c
 )
 
-# 2. Include Directories (From vcxproj "AdditionalIncludeDirectories")
+# 2. CREATE TARGET FIRST (This must happen before target_include_directories)
+if(EMSCRIPTEN)
+    # This creates the target as an Executable (WASM)
+    include(RSDK-Library-GameAPI.cmake)
+else()
+    # This creates the target as a Library (PC)
+    add_library(${GAME_NAME} SHARED ${GAME_SOURCES})
+endif()
+
+# 3. Configure Includes (Now that the target exists, this will work)
 target_include_directories(${GAME_NAME} PRIVATE
     ${GAME_NAME}/
     ${GAME_NAME}/Objects/
 )
 
-# 3. CRITICAL FIX: Preprocessor Definitions
-# These match the "PreprocessorDefinitions" in your vcxproj.
-# RETRO_STANDALONE=1 is required to prevent the main menu crash.
+# 4. Add Definitions (From vcxproj)
 add_definitions(
     -DRETRO_REVISION=3
     -DRETRO_STANDALONE=1
@@ -27,16 +34,7 @@ add_definitions(
     -D_CRT_SECURE_NO_WARNINGS
 )
 
-# 4. Logic: Web (WASM) vs PC
-if(EMSCRIPTEN)
-    # Uses the helper file you created earlier
-    include(RSDK-Library-GameAPI.cmake)
-else()
-    # Standard PC Build
-    add_library(${GAME_NAME} SHARED ${GAME_SOURCES})
-endif()
-
-# 5. Output Name
+# 5. Set Output Name
 set_target_properties(${GAME_NAME} PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
 unset(GAME_NAME CACHE)
