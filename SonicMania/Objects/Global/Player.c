@@ -702,9 +702,9 @@ void Player_Create(void *data)
 
 void Player_Action_HammerWhack(void)
 {
-#if ESA_ENABLE_HAMMERWHACK
     RSDK_THIS(Player);
 
+#if MANIA_USE_PLUS
     self->state          = Player_State_AmyHammer;
     self->timer          = 0;
     self->abilityTimer   = 0;
