@@ -117,6 +117,9 @@ typedef enum {
     ANI_HELI_HAMMER   = 52,
     ANI_DASH_NOHAMMER = 53,
     ANI_JUMP_GROUND   = 54,
+    ANI_HAMMER_JUMP   = 55,
+    ANI_HAMMER_DASH_1 = 56,
+    ANI_HAMMER_DASH_2 = 57,
 #endif
 } PlayerAnimationIDs;
 
@@ -403,6 +406,8 @@ struct EntityPlayer {
     Hitbox *outerbox;
     Hitbox *innerbox;
     int32 characterID;
+    int32 leaderID;
+    int32 sidekickID;
     int32 rings;
     int32 ringExtraLife;
     int32 shield;
